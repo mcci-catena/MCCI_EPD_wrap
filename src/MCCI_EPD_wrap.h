@@ -342,6 +342,9 @@ public:
     cEPD(const cEPD&&) = delete;
     cEPD& operator=(const cEPD&&) = delete;
 
+    /// \brief forward reference
+    class Fonts;
+
     /// \brief the colors for a display.
     ///
     /// \note These values must match the corresponding value in Adafruit_EPD.h
@@ -467,10 +470,100 @@ public:
     int16_t getCursorX(void) const;
     int16_t getCursorY(void) const;
 
+
     using Print::write;
     virtual size_t write(uint8_t x);
     };
 
+///
+/// \brief Class to collect all the font families
+///
+/// \details
+///     To keep things separated, and to allow font families with
+///     a variety of names, we wrap all the fonts in a given family
+///     in the Fonts class. By convention, each font in a family has
+///     a static method that returns a pointer to the font. We rely
+///     on link-time garbage collection to eliminate fonts that aren't
+///     being used.
+///
+class cEPD::Fonts
+    {
+public:
+    // forward reference.
+    class Adafruit;
+    };
+
+///
+/// \brief The fonts in the Adafruit GFX library
+///
+class cEPD::Fonts::Adafruit
+	{
+public:
+	static const GFXfont *FreeMono9pt7b();
+	static const GFXfont *FreeMonoBold9pt7b();
+	static const GFXfont *FreeMonoOblique9pt7b();
+	static const GFXfont *FreeMonoBoldOblique9pt7b();
+
+	static const GFXfont *FreeMono12pt7b();
+	static const GFXfont *FreeMonoBold12pt7b();
+	static const GFXfont *FreeMonoOblique12pt7b();
+	static const GFXfont *FreeMonoBoldOblique12pt7b();
+
+	static const GFXfont *FreeMono18pt7b();
+	static const GFXfont *FreeMonoBold18pt7b();
+	static const GFXfont *FreeMonoOblique18pt7b();
+	static const GFXfont *FreeMonoBoldOblique18pt7b();
+
+	static const GFXfont *FreeMono24pt7b();
+	static const GFXfont *FreeMonoBold24pt7b();
+	static const GFXfont *FreeMonoOblique24pt7b();
+	static const GFXfont *FreeMonoBoldOblique24pt7b();
+
+	static const GFXfont *FreeSans9pt7b();
+	static const GFXfont *FreeSansBold9pt7b();
+	static const GFXfont *FreeSansOblique9pt7b();
+	static const GFXfont *FreeSansBoldOblique9pt7b();
+
+	static const GFXfont *FreeSans12pt7b();
+	static const GFXfont *FreeSansBold12pt7b();
+	static const GFXfont *FreeSansOblique12pt7b();
+	static const GFXfont *FreeSansBoldOblique12pt7b();
+
+	static const GFXfont *FreeSans18pt7b();
+	static const GFXfont *FreeSansBold18pt7b();
+	static const GFXfont *FreeSansOblique18pt7b();
+	static const GFXfont *FreeSansBoldOblique18pt7b();
+
+	static const GFXfont *FreeSans24pt7b();
+	static const GFXfont *FreeSansBold24pt7b();
+	static const GFXfont *FreeSansOblique24pt7b();
+	static const GFXfont *FreeSansBoldOblique24pt7b();
+
+	static const GFXfont *FreeSerif9pt7b();
+	static const GFXfont *FreeSerifBold9pt7b();
+	static const GFXfont *FreeSerifItalic9pt7b();
+	static const GFXfont *FreeSerifBoldItalic9pt7b();
+
+	static const GFXfont *FreeSerif12pt7b();
+	static const GFXfont *FreeSerifBold12pt7b();
+	static const GFXfont *FreeSerifItalic12pt7b();
+	static const GFXfont *FreeSerifBoldItalic12pt7b();
+
+	static const GFXfont *FreeSerif18pt7b();
+	static const GFXfont *FreeSerifBold18pt7b();
+	static const GFXfont *FreeSerifItalic18pt7b();
+	static const GFXfont *FreeSerifBoldItalic18pt7b();
+
+	static const GFXfont *FreeSerif24pt7b();
+	static const GFXfont *FreeSerifBold24pt7b();
+	static const GFXfont *FreeSerifBoldItalic24pt7b();
+	static const GFXfont *FreeSerifItalic24pt7b();
+
+	static const GFXfont *Org_01();
+	static const GFXfont *Picopixel();
+	static const GFXfont *Tiny3x3a2pt7b();
+	static const GFXfont *TomThumb();
+	};
 
 } // end namespace McciEpd
 
